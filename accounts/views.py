@@ -27,7 +27,7 @@ def signup(request):
     }
     return render(request, 'community/form.html', context)
 
-def login(request):
+def signin(request):
     # 로그인 되어있을 경우
     if request.user.is_authenticated:
         return redirect('community:review_list')

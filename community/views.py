@@ -11,7 +11,7 @@ def review_list(request):
     context = {
         'reviews':reviews,
     }
-    return render(request, 'community/review_list.html', context)
+    return render(request, 'community/index.html', context)
 
 @login_required
 def create(request):
@@ -27,7 +27,7 @@ def create(request):
     context = {
         'form':form,
     }
-    return render(request, 'community/form.html', context)
+    return render(request, 'community/new.html', context)
 
 def detail(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
