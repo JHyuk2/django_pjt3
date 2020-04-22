@@ -2,6 +2,18 @@
 
 {% block content %}
 
-<!-- input -->
+<div class="col-12 d-flex flex-column align-items-center">
+  <h4 class="text-black" style="font-family: 'Gugi', cursive;">리뷰 작성</h4>
+
+  <hr />
+
+  <form action="" method="POST" class="text-secondary">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <div class="form-group">
+      <button class="form-control bg-primary text-white" type="submit">upload</button>
+    </div>
+  </form>
+</div>
 
 {% endblock %}

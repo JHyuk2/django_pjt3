@@ -27,7 +27,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*', ]
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -83,6 +82,7 @@ DATABASES = {
     }
 }
 
+AUTH_USER_MODEL = 'accounts.Account'
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
@@ -124,5 +124,3 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/accounts/signin'
 LOGIN_REDIRECT_URL = '/accounts/signin'
-
-AUTH_USER_MODEL = 'accounts.Account'

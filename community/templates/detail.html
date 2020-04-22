@@ -4,4 +4,36 @@
 
 
 
+<div class="list-group container">
+  <div class="list-group-item list-group-item-action">
+    <div class="d-flex w-100 justify-content-between">
+      <h5 class="mb-1">{{ review.title }}<span class="badge badge-primary px-2 mx-2">{{ review.rank }}</span></h5>
+      <small>{{ review.created_at }}</small>
+    </div>
+    <p class="mb-1">{{ review.content }}</p>
+    <small>{{ review.movie_title }}</small>
+  </div>
+
+  <div>
+    <form action="{% url 'community:comments_create' review.id %}" method="POST" class="text-secondary">
+      <div class="form-row align-items-center">
+        <div style="flex: 1;">
+          {% csrf_token %}
+          {{ form.as_p }}
+        </div>
+        <div class="width: 100px; margin-left: 30px;">
+          <button type="submit" class="btn btn-primary mb-2">Submit</button>
+        </div>
+      </div>
+    </form>
+  
+    {% for cmt in comments %}
+      <span>{{ cmt.content }}</span>
+      <span>{{ cmt.creator.username }}</span>
+      <span>{{ cmt.created_at }}</span>
+    {% endfor %}
+  </div>
+</div>
+
+
 {% endblock %}
