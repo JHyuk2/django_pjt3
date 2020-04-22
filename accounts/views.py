@@ -12,39 +12,39 @@ from .forms import CustomUserChangeForm
 def signup(request):
     # 로그인시
     if request.user.is_authenticated:
-        return redirect('community:review_list')
+        return redirect('community:index')
 
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
-            return redirect('community:review_list')
+            return redirect('community:index')
     
     # form => 유효하지 않을 때
     form = UserCreationForm()
     context = {
         'form':form,
     }
-    return render(request, 'community/form.html', context)
+    return render(request, 'community/sign_up.html', context)
 
 def signin(request):
     # 로그인 되어있을 경우
     if request.user.is_authenticated:
-        return redirect('community:review_list')
+        return redirect('community:index')
     if request.method == 'POST':
         form = AuthenticationForm(request, request.POST)
         if form.is_valid():
             auth_login(request, form.get_uesr())
-            return redirect(request.GET.get('next') or 'community:review_list')
+            return redirect(request.GET.get('next') or 'community:index')
     # invalid
     form = AuthenticationForm()
     context = {
         'form':form,
     }
-    return render(request, 'community/form.html', context)
+    return render(request, 'community/sign_in.html', context)
 
 @login_required
 def logout(request):
     auth_logout(request)
-    return redirect('community:review_list')
+    return redirect('community:index')
 
