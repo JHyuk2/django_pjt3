@@ -6,7 +6,7 @@ from .models import Review, Comment
 from .forms import ReviewForm, CommentForm
 
 # Create your views here.
-def index(request):
+def review_list(request):
     reviews = Review.obejct.order_by('-pk')
     context = {
         'reviews':reviews,
