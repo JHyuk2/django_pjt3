@@ -6,7 +6,7 @@ from .models import Review, Comment
 from .forms import ReviewForm, CommentForm
 
 # Create your views here.
-def review_list(request):
+def index(request):
     reviews = Review.obejct.order_by('-pk')
     context = {
         'reviews':reviews,
@@ -14,7 +14,7 @@ def review_list(request):
     return render(request, 'community/index.html', context)
 
 @login_required
-def create(request):
+def new(request):
     if request.method == 'POST':
         form = form.ReviewForm(request.POST)
         if form.is_valid():
@@ -36,7 +36,7 @@ def detail(request, review_pk):
         'review':review,
         'form':form,
     }
-    return render(request, 'community/review_detail.html')
+    return render(request, 'community/detail.html')
 
 @require_POST
 @login_required
@@ -44,7 +44,7 @@ def delete(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     if request.user == review.creator:
         review.delete()
-    return redirect('community:review_list')
+    return redirect('community:index')
 
 @login_required
 def update(request, review_pk):
@@ -61,11 +61,11 @@ def update(request, review_pk):
     context = {
         'form':form,
     }
-    return render(request, 'community/form.html', context=context)
+    return render(request, 'community/new.html', context=context)
 
 @require_POST
 @login_required
-def comments_create(request, review_pk):
+def comments(request, review_pk):
     review = get_object_or_404(Review, pk=review_pk)
     form = CommentsForm(request.POST, instance=review)
     if form.is_valid():
