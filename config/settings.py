@@ -124,3 +124,5 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = '/accounts/signin'
 LOGIN_REDIRECT_URL = '/accounts/signin'
+
+AUTH_USER_MODEL = 'accounts.Account'
