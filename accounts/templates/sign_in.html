@@ -7,15 +7,8 @@
     <h4 class="card-title text-center mb-5" style="font-family: 'Gugi', cursive;">로그인</h4>
 
     <form action="{% url 'accounts:signin' %}" method="POST">
-      <div class="form-group">
-        <label for="username">Username</label>
-        <input type="text" class="form-control" id="username">
-      </div>
-
-      <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password">
-      </div>
+      {% csrf_token %}
+      {{ form.as_p }}
       
       <button type="submit" class="btn btn-primary">로그인</button>
     </form>
